@@ -35,7 +35,7 @@ Controller = backend.Controller
 Listener = backend.Listener
 del backend
 
-
+print("load pynput! hello world(test)")
 # pylint: disable=C0326; it is easier to read column aligned keys
 #: The keys used as modifiers; the first value in each tuple is the
 #: base modifier to use for subsequent modifiers.
@@ -191,6 +191,7 @@ class HotKey(object):
             self._state.remove(key)
 
 
+# TODO: hotkey args append
 class GlobalHotKeys(Listener):
     """A keyboard listener supporting a number of global hotkeys.
 
