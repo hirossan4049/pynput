@@ -108,10 +108,11 @@ class HotKey(object):
 
     :param callable on_activate: The activation callback.
     """
-    def __init__(self, keys, on_activate):
+    def __init__(self, keys, on_activate, *args):
         self._state = set()
         self._keys = set(keys)
         self._on_activate = on_activate
+        self._args = args
 
     @staticmethod
     def parse(keys):
@@ -179,7 +180,7 @@ class HotKey(object):
         if key in self._keys and key not in self._state:
             self._state.add(key)
             if self._state == self._keys:
-                self._on_activate()
+                self._on_activate(*self._args)
 
     def release(self, key):
         """Updates the hotkey state for a released key.
@@ -191,7 +192,6 @@ class HotKey(object):
             self._state.remove(key)
 
 
-# TODO: hotkey args append
 class GlobalHotKeys(Listener):
     """A keyboard listener supporting a number of global hotkeys.
 
@@ -205,8 +205,8 @@ class GlobalHotKeys(Listener):
     """
     def __init__(self, hotkeys, *args, **kwargs):
         self._hotkeys = [
-            HotKey(HotKey.parse(key), value)
-            for key, value in hotkeys.items()]
+            HotKey(HotKey.parse(key), value, *args)
+            for key, value, *args in hotkeys]
         super(GlobalHotKeys, self).__init__(
             on_press=self._on_press,
             on_release=self._on_release,
