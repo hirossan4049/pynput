@@ -7,3 +7,7 @@ Currently, mouse and keyboard input and monitoring are supported.
 
 See `here <https://pynput.readthedocs.io/en/latest/>`_ for the full
 documentation.
+
+hirossan4049 changeLog
+develop branch
+GlobalHotKeys 引数対応。
