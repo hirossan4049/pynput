@@ -5,5 +5,7 @@ def press(string):
     print(string)
 
 
-with keyboard.GlobalHotKeys([["<shift>+w", press,"hello"]]) as h:
+with keyboard.GlobalHotKeys([
+        ["<shift>+w", press,"hello,W"],
+        ["<shift>+h", press,"shiftHH"]]) as h:
     h.join()
